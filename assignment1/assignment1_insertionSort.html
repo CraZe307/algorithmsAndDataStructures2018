@@ -1,6 +1,38 @@
 <script>
     // insertion sort algorithm
-    
+    // resources used
+    // https://hackernoon.com/programming-with-js-insertion-sort-1316df8354f5
+
+    // make an array to sort
+    var arr = [9, 3, 8, 4, 1, 2, 6, 7, 5];
+
+    // function for insertion sort
+    function insertionSort(array)
+    {
+        // for loop around the outside of the array
+        for(var i =0; i < array.length; i++)
+        {
+            // temp variable for the array on the inner loop
+            var temp = array[i];
+            // variable to stay under i so that it doesn't run too many times
+            var n = i - 1;
+            //while this is true run the inner loop where the actual swaps occur
+            for(n >= 0; n > -1 && array[n] > temp; n--)
+            {
+                // this is where we are performing the swaps
+                // swapping the element with the one at one index above
+                array[n + 1] = array[n];
+            }
+            // set temp to the value of array[j + 1]
+            console.log("The array after " + i + " iterations is " + array);
+            array[n + 1] = temp;
+
+        }
+        return array;
+
+    }
+
+    console.log(insertionSort(arr));
 
 
 
