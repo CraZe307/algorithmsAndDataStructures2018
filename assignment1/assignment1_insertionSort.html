@@ -5,6 +5,7 @@
 
     // make an array to sort
     var arr = [9, 3, 8, 4, 1, 2, 6, 7, 5];
+    var list = [2, 7, 1, 8, 2, 9, 10, 5, 4];
 
     // function for insertion sort
     function insertionSort(array)
@@ -26,13 +27,14 @@
             // set temp to the value of array[j + 1]
             console.log("The array after " + i + " iterations is " + array);
             array[n + 1] = temp;
-
         }
+        console.log("The final array will be : " + array);
         return array;
 
     }
 
     console.log(insertionSort(arr));
+    console.log(insertionSort(list));
 
 
 
