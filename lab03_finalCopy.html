@@ -1,0 +1,82 @@
+<script>
+
+
+    // *****RESOURCES USED******
+    // https://www.w3schools.com/jsref/jsref_slice_array.asp
+    // https://hackernoon.com/programming-with-js-merge-sort-deb677b777c0
+    // Consulted classmate Omar for help with the merge of the 3 arrays
+    // divide and conquer sum
+    // sums up numbers in the base case
+    // ex: a = [1,4,-1,5] would equal 9
+    // split into 3 subarrays instead of 2
+
+
+    // Recursively split the array into three until it satisfies our base case and we can compute the sum
+    function divideAndConquerSum(a)
+    {
+
+        // Base Case where a.length <= 2
+        // compute the sums in the base case
+        if(a.length <= 2)
+        {
+            // iterate over the elements and add the value at the indexes to a sum variable
+            for(var i = 0; i < a.length; i++)
+            {
+                // sum variable to hold the value of our indexes
+                var sum = 0;
+                sum += a[i];
+            }
+            return sum;
+        }
+
+
+        // for the splitting of the array into our three we will need 2 split points
+        // The first at one third of the array
+        var oneThirdSplit = Math.floor((a.length) / 3);
+        // And the second at the two thirds point
+        var twoThirdSplit = Math.floor((2*a.length) / 3);
+
+        // using our two split points we can use a.slice
+        // to "slice" the array with the bounds we need
+
+        // the first slice will be bounded below by 0 and above by our oneThirdSplit
+        var firstThirdArr = a.slice(0, oneThirdSplit);
+
+        // the second slice will be bounded below by oneThirdSplit and above by twoThirdSplit
+        var secondThirdArr = a.slice(oneThirdSplit, twoThirdSplit);
+
+        // The final slice will be bounded below by twoThirdSplit and above by a.length
+        var thirdArray = a.slice(twoThirdSplit, a.length);
+
+
+        // return the sum found from each of our sub arrays
+        // recursively call the function on the sub arrays until they satisfy our base case and the sum can be computed
+        return divideAndConquerSum(firstThirdArr) + divideAndConquerSum(secondThirdArr) + divideAndConquerSum(thirdArray);
+    }
+
+    //tester function
+    function print(arr)
+    {
+        // iterate over the array and print out the elements
+        for(var i = 0; i < arr.length; i++)
+        {
+            // print the values at the indexes
+            console.log("The value at the " + i + " index is " + arr[i]);
+        }
+        // now do the divide and conquer part and print out those results
+        console.log("And the sum for [" + arr + "] is " + divideAndConquerSum(arr));
+    }
+    var arr1 = [1, 4, 6];
+    var arr2 = [3, 6, 8, 9, 10, -5, 7, 4];
+    var arr3 = [6,4];
+    var arr4 = [9,5,2,3,6,10,34,7,12,68];
+    print(arr1);
+    print(arr2);
+    print(arr3);
+    print(arr4);
+
+
+
+
+
+</script>
