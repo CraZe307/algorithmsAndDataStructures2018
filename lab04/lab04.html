@@ -16,27 +16,34 @@
         // we need to see whether or not the list is sorted
         // function for testing sorted
         function sortedFunc(a) {
-            //iterate over the aay
+
+            //iterate over the array
             for (var i = 1; i < a.length; i++) {
                 // if the value at our current index is greater than the value at index-1 than the list is not sorted yet
                 if (a[i - 1] > a[i]) {
+
                     return false;
+
                 }
             }
 
             // return true once we break the for loop and the if statement
+
+
             return true;
         }
 
         // function for shuffling the aay
         // switch the value positions not the actual values
         function shuffle(a) {
+
             // variables for our size ( or limit ) a temp variable and an index to keep our spot
             var size = a.length;
             var temp;
             var index;
 
             while (size > 0) {
+
                 // set the index to a random number
                 index = Math.floor(Math.random() * size);
                 // decrement size so we can break the while loop
@@ -58,13 +65,19 @@
             // the list is not sorted at first
             var sorted = false;
 
+            // variable to hold the amount of permutations we did
+            var perm = 0;
+
             while(sorted == false)
             {
+                //increment perm
+                perm++;
                 // shuffle the array while sorted is false
                 a = shuffle(a);
                 // check if sorted is still false when the list is sorted than we break the loop
                 sorted = sortedFunc(a);
             }
+            console.log("The amount of permutations we had to do: " + perm);
             return a;
         }
         return sort(a);
@@ -81,10 +94,13 @@
     arr2 = [3, 1, 7, 9, 33, -6, 9, 1, 6, 2];
     arr3 = [3,1];
     arr4 = [5];
+    arr5 = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+    //arr6 = [];
     print(arr1);
     print(arr2);
     print(arr3);
     print(arr4);
+    print(arr5);
 
 
 </script>
