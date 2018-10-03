@@ -62,7 +62,7 @@
             {
                 // shuffle the array while sorted is false
                 a = shuffle(a);
-                // check if sorted is still false
+                // check if sorted is still false when the list is sorted than we break the loop
                 sorted = sortedFunc(a);
             }
             return a;
@@ -70,10 +70,21 @@
         return sort(a);
     }
 
+    function print(arr)
+    {
+        // simple print function to see if the lists are sorted
+        console.log("Original array: " + arr);
+        permutationSort(arr);
+        console.log("Sorted array: " + arr);
+    }
     arr1 = [2, -3, 6, 7, 4, 9, 8, 0, 1, 10];
-    console.log("The original array is: " + arr1);
-    permutationSort(arr1);
-    console.log("The sorted array is: " + arr1);
+    arr2 = [3, 1, 7, 9, 33, -6, 9, 1, 6, 2];
+    arr3 = [3,1];
+    arr4 = [5];
+    print(arr1);
+    print(arr2);
+    print(arr3);
+    print(arr4);
 
 
 </script>
