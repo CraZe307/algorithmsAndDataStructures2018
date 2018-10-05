@@ -1,0 +1,108 @@
+<script>
+    // Lab 04 Permutation sort not random
+    // Resources Used
+    // https://www.geeksforgeeks.org/bogosort-permutation-sort/
+    // https://rosettacode.org/wiki/Sorting_algorithms/Bogosort#JavaScript
+    // https://stackoverflow.com/questions/9960908/permutations-in-javascript
+    // Programming Discussions (Discord Server)
+
+
+
+    // Permutation Sort Function
+    // Check if a is sorted
+    // run permutation and increment counter variable
+    // check if a is sorted after permutation
+    // repeat until a is sorted
+    function permutationSort(a)
+    {
+
+        // variable to hold our permutation counter
+        var perms = 0;
+        // variable to hold our sorted flag
+        var sorted = false;
+
+        // if statement to tell whether the list is sorted or not
+        if(sorted === true)
+        {
+            perms++;
+            return perms;
+        }
+        // if the list is not sorted
+        else
+            {
+            // create variables to hold our place for the shuffle
+            var x = 0;
+            var y = a.length;
+                while (sorted === false) {
+                    // increment our count variable for every iteration of the loop
+                    perms++;
+                    // Permutation switch/shuffle
+                    shuffle(a, x, y);
+
+                    // set sorted to isSorted() to change whether we are sorted or not
+                    sorted = isSorted(a);
+                    // increment x so shuffle changes indexes
+                    x++;
+                }
+                return perms;
+            }
+
+    }
+
+    // helper function for testing if the array is sorted yet
+    function isSorted(a)
+    {
+            //iterate over the array
+            for (var i = 1; i < a.length; i++) {
+                // if the value at our current index is greater than the value at index-1 than the list is not sorted yet
+                if (a[i - 1] > a[i]) {
+                    return false;
+                }
+            }
+            // return true once we break the for loop and the if statement
+            return true;
+    }
+
+
+
+        // if the list is sorted we wont get to this point so we don't
+        // need to check whether it is sorted
+
+        // I will make an inner shuffle function
+        function shuffle(a, x, y)
+        {
+            // x is to be our first index (our lower bound)
+            // y is to be the last index (our upper bound)
+
+            // set temp as the placeholder
+            var temp = a[x];
+            // set first to next ( x -> y)
+            a[x] = a[y];
+            // set next back into our temp for the next call
+            a[y] = temp;
+            // return the shuffle
+            return a;
+        }
+
+
+
+    // Simple test print function
+    function testPrint(a)
+    {
+        console.log("The amount of permutations to sort the array " + a + " was " + permutationSort(a));
+
+    }
+
+    // **** Careful uncommenting some of these, they take a while to run ****
+    arr1 = [4, 5, 1];
+   //arr2 = [7, 1, 8];
+    //arr3 = [3, 0, -1, 5, 7, 9, 10, 23, 9];
+    //arr4 = [3, 2, 8, 4, 2, 0, 8];
+    //arr5 = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+    testPrint(arr1);
+    //testPrint(arr2);
+    //testPrint(arr3);
+    //testPrint(arr4);
+    //testPrint(arr5);
+
+</script>
