@@ -1,0 +1,118 @@
+<script>
+    //Lab 05 adjacency matrix --> adjacency list
+    // Resources used
+    // https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs
+    // https://en.wikipedia.org/wiki/Adjacency_matrix
+    // https://stackoverflow.com/questions/2218322/what-is-better-adjacency-lists-or-adjacency-matrices-for-graph-problems-in-c
+    // https://www.geeksforgeeks.org/graph-and-its-representations/
+
+
+    // create a function that converts an adjacency matrix into an adjacency list
+    // we have a matrix and wherever it is 1 we push it to the list
+    // if it is 0 then we don't push it to our list
+
+    // Before we can convert a matrix to a list, we first need a matrix
+    // emptyMatrix will create an empty matrix
+    // with num being the amount of vertexes wanted
+    function emptyMatrix(num)
+    {
+        // blank array for the matrix
+        let matrix = [];
+        // row i for loop to create num i
+        for (let i = 0; i < num; ++i)
+        {
+            matrix[i] = [];
+            // j for loop for num j
+            for (let j = 0; j < num; ++j)
+            {
+                matrix[i][j] = 0;
+            }
+        }
+        return matrix;
+    }
+
+    // after we have a matrix of vertexes we need to add edges to satisfy the 1 in our matrix
+    // with addEdge we take the matrix, the source, and the destination
+    // we also have weight which will just be a 1
+    // this is a directed edge because I am adding to the source and to the destination
+    function addEdge(matrix, sourceVertex, destinationVertex, weight)
+    {
+        // add a 1 in the matrix for the edge from source to dest
+        matrix[sourceVertex][destinationVertex] = weight;
+        // add a 1 in the matrix for the edge from dest to source
+        matrix[destinationVertex][sourceVertex] = weight;
+    }
+
+    function convertToAdjList(adjMatrix)
+    {
+        // so we have our matrix of row i and column j
+        // to get the adjacency list from the adjacency matrix
+        // where the matrix is composed of 1s, 0s, where a cell is only
+        // 1 iff edge(i,j) exists in the graph
+        // we would say
+        // for each row i in the matrix
+            // for each column j in the matrix
+                // if( matrix[i][j] === 1
+                    // adjList.push(j)
+            var adjList = [];
+            // for loop around the i
+            for(var i = 0; i < adjMatrix.length; i++)
+            {
+                // set the array to positions around the i row
+                adjList[i] = [];
+                // for loop around j columns
+                for(var j = 0; j < i; j++)
+                {
+                    // if a 1 exists, or if an edge exists
+                    if(adjMatrix[i][j] === 1)
+                    {
+                        // add the vertex to our list
+                        adjList[i].push(j);
+                    }
+                }
+            }
+            return adjList;
+        }
+
+    // testing
+    function testPrint(matrix)
+    {
+        console.log("The adjacency Matrix is: " + matrix);
+        console.log(" and the adjacency list of this matrix is: ");
+        console.log(convertToAdjList(matrix));
+    }
+
+    var adjMat = emptyMatrix(5);
+    addEdge(adjMat, 1, 2, 1);
+    addEdge(adjMat, 0, 3, 1);
+    var adjMat2 = emptyMatrix(10);
+    addEdge(adjMat2, 0, 4, 1);
+    addEdge(adjMat2, 1, 2, 1);
+    addEdge(adjMat2, 4, 2, 1);
+    addEdge(adjMat2, 3, 5, 1);
+    var adjMat3 = emptyMatrix(15);
+    addEdge(adjMat3, 0, 4, 1);
+    addEdge(adjMat3, 4, 2, 1);
+    addEdge(adjMat3, 5, 6 , 1);
+    addEdge(adjMat3, 6, 8, 1);
+    addEdge(adjMat3, 10, 4, 1);
+    addEdge(adjMat3, 12, 7, 1);
+    var adjMat4 = emptyMatrix(20);
+    addEdge(adjMat4, 3, 15, 1);
+    addEdge(adjMat4, 16, 4, 1);
+    addEdge(adjMat4, 13, 6, 1);
+    addEdge(adjMat4, 4, 1, 1);
+    addEdge(adjMat4, 3, 10, 1);
+    addEdge(adjMat4, 0, 1, 1);
+    addEdge(adjMat4, 3, 18, 1);
+    addEdge(adjMat4, 6, 19, 1);
+
+    testPrint(adjMat);
+    testPrint(adjMat2);
+    testPrint(adjMat3);
+    testPrint(adjMat4);
+
+
+
+
+</script>
