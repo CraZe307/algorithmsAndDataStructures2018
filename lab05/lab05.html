@@ -5,6 +5,7 @@
     // https://en.wikipedia.org/wiki/Adjacency_matrix
     // https://stackoverflow.com/questions/2218322/what-is-better-adjacency-lists-or-adjacency-matrices-for-graph-problems-in-c
     // https://www.geeksforgeeks.org/graph-and-its-representations/
+    // Programming Discussions (Discord Server)
 
 
     // create a function that converts an adjacency matrix into an adjacency list
@@ -34,7 +35,8 @@
     // after we have a matrix of vertexes we need to add edges to satisfy the 1 in our matrix
     // with addEdge we take the matrix, the source, and the destination
     // we also have weight which will just be a 1
-    // this is a directed edge because I am adding to the source and to the destination
+    // this is a undirected edge because I am adding to the source and to the destination
+    // and then back from the destination to the source
     function addEdge(matrix, sourceVertex, destinationVertex, weight)
     {
         // add a 1 in the matrix for the edge from source to dest
@@ -51,34 +53,34 @@
         // 1 iff edge(i,j) exists in the graph
         // we would say
         // for each row i in the matrix
-            // for each column j in the matrix
-                // if( matrix[i][j] === 1
-                    // adjList.push(j)
-            var adjList = [];
-            // for loop around the i
-            for(var i = 0; i < adjMatrix.length; i++)
+        // for each column j in the matrix
+        // if( matrix[i][j] === 1
+        // adjList.push(j)
+        var adjList = [];
+        // for loop around the i
+        for(var i = 0; i < adjMatrix.length; i++)
+        {
+            // set the array to positions around the i row
+            adjList[i] = [];
+            // for loop around j columns
+            for(var j = 0; j < i; j++)
             {
-                // set the array to positions around the i row
-                adjList[i] = [];
-                // for loop around j columns
-                for(var j = 0; j < i; j++)
+                // if a 1 exists, or if an edge exists
+                if(adjMatrix[i][j] === 1)
                 {
-                    // if a 1 exists, or if an edge exists
-                    if(adjMatrix[i][j] === 1)
-                    {
-                        // add the vertex to our list
-                        adjList[i].push(j);
-                    }
+                    // add the vertex to our list
+                    adjList[i].push(j);
                 }
             }
-            return adjList;
         }
+        return adjList;
+    }
 
     // testing
     function testPrint(matrix)
     {
         console.log("The adjacency Matrix is: " + matrix);
-        console.log(" and the adjacency list of this matrix is: ");
+        console.log("And the adjacency list of this matrix is: ");
         console.log(convertToAdjList(matrix));
     }
 
@@ -111,8 +113,4 @@
     testPrint(adjMat2);
     testPrint(adjMat3);
     testPrint(adjMat4);
-
-
-
-
-</script>
+    </script>
