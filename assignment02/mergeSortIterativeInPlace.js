@@ -6,6 +6,14 @@
 // https://www.w3schools.com/jsref/jsref_obj_array.asp
 // https://stackoverflow.com/questions/6259982/how-do-you-use-the-conditional-operator-in-javascript
 
+// some small issues I could not figure out
+// the larger the input size the more out of place elements there are,
+// inputs with 4 elements usually worked the best with some small problems
+// the issue seems to be where one of the loop is running one too few times
+// because the last element and the n-1 element are what need to be flipped
+// I would have tried to address this issue but ran out of time and wanted to get
+// at least something submitted
+
 
 
 // mergesort function
@@ -92,7 +100,10 @@ function printTest(arr)
     mergesort(arr);
     console.log("The sorted array is " + arr);
 }
-var arr = [3, 1, 7, 9, 4];
+var arr1 = [11,10,9,8];
+var arr = [2,1,9,3,6];
 printTest(arr);
+printTest(arr1);
+
 
 
