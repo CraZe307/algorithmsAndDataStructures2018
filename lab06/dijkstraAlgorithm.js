@@ -12,6 +12,7 @@
 // So dist just stays at infinity for everything.
 // I think it is a problem with my if statement somewhere or perhaps how I am getting the weight
 // I ran out of time to complete the assignment or I would have looked into this more.
+// Any input would be greatly appreciated.
 
 // initialize the dist to infinity and the source to 0
 // while there are unmarked vertices
