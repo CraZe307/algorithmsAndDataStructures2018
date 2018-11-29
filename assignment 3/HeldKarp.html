@@ -1,0 +1,194 @@
+<script>
+    // Held Karp (Part 1 of assignment 3)
+    // resources used
+    // https://stackoverflow.com/questions/3983088/javascript-error-uncaught-syntaxerror-unexpected-end-of-input
+    // https://stackoverflow.com/questions/7826992/browser-javascript-stack-size-limit
+    // https://stackoverflow.com/questions/22123769/rangeerror-maximum-call-stack-size-exceeded-why
+    // https://stackoverflow.com/questions/6095530/maximum-call-stack-size-exceeded-error
+    // https://stackoverflow.com/questions/12149945/javascript-function-returning-nan
+    // https://medium.freecodecamp.org/understanding-memoize-in-javascript-51d07d19430e
+    // https://www.w3schools.com/jsref/jsref_min.asp
+    // https://www.slideshare.net/sachinkheveria/traveling-salesman-problemtheoryandapplications
+
+
+    // cities will be our set of verticies with start = 1
+    // for every vertex other than 1 we find the minimum cost path with 1 as the starting point
+    // and i as the ending point
+    // let cost of the path be cost(i) the cost of the cycle will be cost(i) + dist(i,1)
+    // where dist(i,1) is the distance from i to 1
+    function heldKarp(cities, start) {
+        // cache for the memoization
+        let cache = [];
+        // number of cities
+        let numCities = 0;
+        // start is 0
+        start = cities[0];
+
+        // TODO get the for each loop going right
+        // TODO get start integrated
+        // TODO get city in cities properly
+
+
+        // for loop to get the number of cities
+        for(let u = 0; u < cities.length; u++)
+        {
+            for(let y = 0; y < cities.length; y++)
+            {
+                if(cities[u][y] !== 0)
+                {
+                    numCities++;
+                }
+            }
+        }
+        // console.log(numCities);
+
+        // second for loop to get if numCities == 2
+        for(let i = 0; i < cities.length; i++)
+        {
+            for(let j = 0; j < cities.length; j++)
+            {
+                // if its less than 2 or 2 than just return the distance
+                if(numCities <= 2)
+                {
+                    cache = start + cities[i] + cities[j];
+                }
+                else // numcitites is greater than 2
+                {
+                    for (city in cities)
+                    {
+                        //console.log("city " + city);
+                        //console.log("K " + k);
+                        //console.log("city - numCities " + (city - numCities));
+                        cache += Math.min((heldKarp((cities), (city - numCities)) + (city - numCities)));
+                    }
+                }
+            }
+        }
+
+
+
+
+        // |cities| = numCities
+        /*
+        for (let i = 0; i < cities.length; i++) {
+            //console.log(1);
+            for (let k = 0; k < cities.length; k++) {
+                //console.log(" i " + i);
+                //console.log(" K " + k);
+                //console.log(2);
+                console.log("Cities length " + cities.length);
+                while (cities[i][k] !== 0 && numCities <= cities.length) {
+
+                    console.log("numCities " + numCities);
+                    console.log(3);
+
+                    // if |cities| == 2 return length of tour from start to city
+                    if (numCities === 2) {
+                        console.log(4);
+                        // this will the value from start to end the [i][k] being the only other node available
+                        // console.log("city[ 0 ]" + cities[0]);
+                        // console.log("cities[i] " + cities[i]);
+                        //console.log("cities[k] " + cities[k]);
+                        cache = cities[0] + cities[i] + cities[k];
+                        break;
+                    }
+
+                    if (numCities > 2) // if numCities > 2
+                    {
+                        //console.log(5);
+                        // return the function of
+                        // for each city in cities
+                        for (city in cities)
+                        {
+                            //console.log("city " + city);
+                            //console.log("K " + k);
+                            //console.log("city - numCities " + (city - numCities));
+                            cache += Math.min((heldKarp((cities), (city - numCities)) + (city - numCities)));
+                        }
+                        //console.log("UNDEF");
+                        //console.log((heldKarp((cities - start), (city - numCities)) + "UNDEF"));
+                        //console.log("UNDEF");
+                        //console.log(cities[start]);
+                        //console.log("CACHE " + cache);
+                        numCities++;
+                        return cache;
+                        /*return function() {
+                            console.log(6);
+                            // for each city in cities
+                            for (city in cities)
+                            {
+                                console.log(7);
+                                // minimum value of the heldkarp and added into the min recursively
+                                cache = Math.min(heldKarp((cities - start), city) + cities[start][city]);
+                            }
+                        }
+                        */
+                        /*
+                    }
+                    //else // city === 0 so not a valid city is there and the number of cities is less than 2
+                    {
+                        // just continue with the iteration of the loop
+                        // you dont have to put continue; but this is where I would
+                        // continue;
+                    }
+                    }
+
+                    }
+                }
+            }
+        }
+        */
+    }
+
+
+
+        function emptyMatrix(num) {
+            // blank array for the matrix
+            let matrix = [];
+            // row i for loop to create num i
+            for (let i = 0; i < num; ++i) {
+                matrix[i] = [];
+                // j for loop for num j
+                for (let j = 0; j < num; ++j) {
+                    matrix[i][j] = 0;
+                }
+            }
+            return matrix;
+        }
+
+
+
+        function addEdge(matrix, sourceVertex, destinationVertex, dist) {
+            // add a 1 in the matrix for the edge from source to dest
+            matrix[sourceVertex][destinationVertex] = dist;
+            // add a 1 in the matrix for the edge from dest to source
+            matrix[destinationVertex][sourceVertex] = dist;
+        }
+
+        // print test function
+        function print(graph) {
+            console.log("The shortest path of your tour is: ");
+            let result = heldKarp(graph, 0);
+            console.log(result);
+        }
+
+
+// testing
+
+        // each edge is going to represent a stop
+        let graph = emptyMatrix(10);
+        addEdge(graph, 0, 1, 10);
+        addEdge(graph, 1, 2, 4);
+        addEdge(graph, 2, 3, 1);
+        addEdge(graph, 4, 5, 54);
+        addEdge(graph, 5, 6, 22);
+        addEdge(graph, 6, 7, 5);
+        addEdge(graph, 7, 8, 3);
+        addEdge(graph, 8, 9, 67);
+
+        print(graph);
+
+    //console.log(heldKarp(graph, 0));
+
+
+</script>

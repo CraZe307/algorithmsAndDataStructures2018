@@ -1,0 +1,84 @@
+<script>
+    // 2 opt swap Part 2 of assignment 3
+    // resources used
+
+
+
+    function twoOptSwap(tour)
+    {
+        // get the amount of stops n
+        let n = tour.vertices.length;
+        // get the info for the best possible tour
+        let bestPossibleTour = tour;
+        // for loop around the stops in the tour
+        for(let i=1; i<n-2; i++)
+        {
+            // i will run n - 2 while j runs n + 1 so you will end up reversing the order later
+            for(let j=i+1; j<n+1; j++)
+            {
+                // if they are at the end (n + 1 ) - (n - 2) continue out
+                if((j-i) === 1)
+                {
+                    continue;
+                }
+                // swap the current tours slice at i and merge it back into the swapped order of the slices made between i,j and j,n
+                let swap = tour.vertices.slice(0,i).concat(tour.vertices.slice(i,j).reverse(), tour.vertices.slice(j,n));
+                // set this new tours vertex information into a new tour
+                let newTour = {vertices:swap, cost:cost(swap)};
+
+                // if the cost of the newTour is smaller than our best possible tour then set the new tour to the best possible tour
+                // and the next iteration of the loop will use the new bestPossibleTour
+                if(newTour.cost < bestPossibleTour.cost)
+                {
+                    bestPossibleTour = newTour;
+                }
+            }
+        }
+        // return the best possible tour
+        return bestPossibleTour;
+    }
+
+    // helper function for costs and distance
+
+
+    // function to get the cost of the v (vertexes)
+    function cost(v)
+    {
+        // set total to 0
+        let total = 0;
+        // for loop around the verticies
+        for(let i=1; i < v.length; i++)
+        {
+            // compute the total using the distance between cities
+            total += distance(v[i-1], v[i]);
+        }
+        // one last distance addition for the end to root node city
+        total += distance(v[v.length-1], v[0]);
+        // return the cost of the vertex paths
+        return total;
+    }
+
+    function distance(v1, v2)
+    {
+        // formula for magnitude of a vector where the vector is between 2 points v1 and v2
+        return Math.sqrt(Math.pow(v1[0]-v2[0], 2)+Math.pow(v1[1]-v2[1], 2));
+    }
+
+    // function for creating tours
+    function tours(vertex)
+    {
+        // get the cost of the tour
+        let cost = cost(vertex);
+        // set the current tour
+        let currTour = {vertices: vertex, cost:cost};
+        // set the best tour as our current tour
+        let bestTour = currTour;
+    }
+
+    //testing area
+
+
+    console.log(twoOptSwap(4));
+
+
+</script>
