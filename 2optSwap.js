@@ -1,6 +1,38 @@
 // 2optSwap function
 // resources used
-
+// https://codeburst.io/javascript-arrays-finding-the-minimum-maximum-sum-average-values-f02f1b0ce332
+// https://www.w3schools.com/jsref/jsref_reduce.asp
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+// https://www.w3schools.com/js/js_arrays.asp
+// https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
+// https://stackoverflow.com/questions/14202601/array-size-vs-array-length
+// https://www.w3schools.com/jsref/jsref_length_array.asp
+// https://www.w3schools.com/js/js_break.asp
+// https://blog.sessionstack.com/how-javascript-works-memory-management-how-to-handle-4-common-memory-leaks-3f28b94cfbec
+// https://stackoverflow.com/questions/5836833/create-a-array-with-random-values-in-javascript
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+// https://stackoverflow.com/questions/15743805/how-to-decrement-work-in-java-script-for-loop
+// https://www.le.ac.uk/users/rjm1/cotter/page_38.htm
+// https://github.com/chriski777/TSP_Solver
+// https://pathtogeek.com/traveling-salesman-problem-dynamic-programming-held-karp-youtube
+// https://stackoverflow.com/questions/5038640/solver-for-tsp-like-puzzle-perhaps-in-javascript
+// https://github.com/corbos/WillyLoman
+// https://gist.github.com/jgcoded/d7ecba7aa3e210419471
+// https://www.thecrazyprogrammer.com/2017/05/travelling-salesman-problem.html
+// https://stackoverflow.com/questions/24144478/finding-shortest-circuit-in-a-graph-that-visits-x-nodes-at-least-once
+// https://web.stanford.edu/class/cs97si/04-dynamic-programming.pdf
+// https://www.geeksforgeeks.org/traveling-salesman-problem-tsp-implementation/
+// https://github.com/AwardOfSky/Held-Karp/blob/master/src/karp/HeldKarp.java
+// https://github.com/pedrohfsd/tsp/tree/develop
+// https://www.quora.com/Are-there-any-good-examples-of-the-Held-Karp-algorithm-in-C++-Hard-to-find-example-code-to-solve-the-traveling-salesman-problem-Everyone-wants-to-just-talk-about-theory-and-not-show-how-to-actually-do-it-What-is-the-big-secret
+// https://stackoverflow.com/questions/40708916/for-tsp-how-does-held-karp-algorithm-reduce-the-time-complexity-from-brute-forc
+// https://stackoverflow.com/questions/3510519/variation-on-travelling-salesman-problem-pick-a-good-subroute-from-many-nodes
+// https://stackoverflow.com/questions/7736674/what-is-a-practical-solution-to-the-travelling-salesman-prblem-using-google-map
+// https://github.com/trekhleb/javascript-algorithms/blob/master/src/algorithms/graph/travelling-salesman/bfTravellingSalesman.js
+// https://www.codeproject.com/Articles/762581/%2FArticles%2F762581%2FHeld-Karp-algorithm-implementation-in-Csharp
+// https://github.com/Sinclert/Heuristics-TSP/blob/master/HK_Optimal.java
+// https://github.com/topics/travelling-salesman?o=desc&s=
+// https://cs.stackexchange.com/questions/71802/is-a-two-opt-move-guaranteed-to-produce-a-non-worse-tour
 
 
 
@@ -66,9 +98,9 @@ function produceTwoOptSwap(route)
         else // if nextPop < firstPop
             value = nextPop;
 
-
         loop++;
     }
+    // the optimal path
     return value;
 }
 
@@ -91,11 +123,11 @@ function print(arr)
     //console.log("The shortest route for a route of " + arr.length + " is: ");
     console.log("input size: " + arr.length);
     console.time('produceTwoOptSwap');
-    //console.log(produceTwoOptSwap(arr));
-    produceTwoOptSwap(arr);
-    //console.log("And it took ");
+    console.log("The optimal path is");
+    console.log(produceTwoOptSwap(arr));
+    console.log("And it took ");
     console.timeEnd('produceTwoOptSwap');
-    // console.log("To complete");
+    console.log("To compute");
 }
 
 // testing area
@@ -108,12 +140,20 @@ let f = makeArray(400);
 let g = makeArray(500);
 let h = makeArray(600);
 let i = makeArray(700);
-
-
-// these break the stack trace
+/*
+these input sizes overflow the heap even on the AWS
 let j = makeArray(800);
-//let k = makeArray(900);
-
+let k = makeArray(900);
+let l = makeArray(1000);
+let m = makeArray(2000);
+let n = makeArray(3000);
+let o = makeArray(5000);
+let p = makeArray(10000);
+let q = makeArray(100000);
+let r = makeArray(500000);
+let s = makeArray(750000);
+let t = makeArray(1000000);
+*/
 
 print(a);
 print(b);
@@ -124,5 +164,17 @@ print(f);
 print(g);
 print(h);
 print(i);
+/*
 print(j);
-//print(k);
+print(k);
+print(l);
+print(m);
+print(n);
+print(o);
+print(p);
+print(q);
+print(r);
+print(s);
+print(t);
+*/
+
